@@ -13,7 +13,7 @@ ll bintoInt(string bin){
 	
 	}
 
-	return num;o
+	return num;
 
 
 }
