@@ -4,15 +4,6 @@ using namespace std;
 using ll = long long;
 
 
-
-
-
-
-
-
-
-
-
 int lunes(int hoy, vector<vector<int>>&calendario){
 
 	bool visited = true;
