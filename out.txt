@@ -1,8 +1,0 @@
-0.01 Euro: 0
-0.02 Euro: 2
-0.05 Euro: 1
-0.1 Euro: 0
-0.2 Euro: 2
-0.5 Euro: 1
-1 Euro: 0
-2 Euro: 0
