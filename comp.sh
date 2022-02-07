@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo ${g++ $1}
-echo $(./a.out < in.txt > out.txt)
+echo $(g++ -o ~/Desktop/competitiveProgramming/a.out $1)
+echo $(~/Desktop/competitiveProgramming/a.out < ~/Desktop/competitiveProgramming/in.txt > ~/Desktop/competitiveProgramming/out.txt)
 
 
