@@ -6,8 +6,8 @@ int main(){
 
 	int n;
 	cin>>n;
-	if(n<=3){
-		cout<<"NO SOlUTION"<<endl;
+	if(n<=3 && n>1){
+		cout<<"NO SOLUTION"<<endl;
 	}else{
 	if(n &1){
 		for(int i = 1; i<= n ; i+=2){
