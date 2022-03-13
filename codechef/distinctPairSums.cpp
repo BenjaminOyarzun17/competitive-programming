@@ -6,12 +6,12 @@ int main(){
 	int t;	
 	cin>>t;
 	while(t--){
-		ll x;
-		cin>>x;
-		cout << ((x * (x + 1)) / 2 % 2 == 0 ? x : x - 1) << '\n';
+		ll l, r;
+		cin>>l>>r;
+		cout<<2*r - 2*l +1<<endl;
 	}
-
 }
+
 
 
 
