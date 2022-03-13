@@ -7,13 +7,20 @@ int main(){
 	while(t--){
 		string s;
 		cin>>s;	
-		int iv= stoi(s);
-		while(iv%10==0){
-			iv= iv/10;
+		int current  = s.size()-1;
+		int zeros= 0;
+		while(true){
+			if(s[current]=='0'){
+				zeros++;
+				current--;
+			}
+			else{
+				break;
+			}
 		}
-		for(int i = startIndex; i>=0; i--){
-			if(s[i]!='0')cout<<s[i];
-		}
+		for(int i = s.size()-1-zeros; i>=0; i--){
+			cout<<s[i];
+		}	
 		cout<<endl;
 	}
 	return 0;
