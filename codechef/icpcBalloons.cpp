@@ -7,18 +7,21 @@ int main(){
 	while(t--){
 		ll n ;
 		cin>>n;
-		set<ll> se;
-		ll itc = 0;
-		while(itc<n){
-			ll g;
-			cin>>g;	
-			itc ++;
-			if(g>=1 && g<=7 && se.size()<7){
-				se.insert(g);	
+		vector<ll> probs(n);
+		for(auto &x: probs) cin>>x;
+		vector<bool> found(7, false);
+		ll i = 0;	
+		for(i; i< n ; i++){
+			if(probs[i]>=1 && probs[i]<=7){
+				found[probs[i]-1]=true;
 			}
-			if(se.size()==7)break;	
+			ll foundCount = 0;
+			for(auto x: found) {
+				if(x)foundCount++;
+			}		
+			if(foundCount==7)break;
 		}
-		cout<<itc<<endl;
+		cout<<i+1<<endl;	
 	}
 	return 0;
 }
