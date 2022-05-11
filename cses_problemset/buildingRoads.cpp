@@ -24,7 +24,7 @@ int main(){
 	for(ll i = 0 ; i< n ; i++){
 		available.insert({i, false});
 	}
-	while (!available.empty()){//no estoy seguro si es inclusivo
+	while (!available.empty()){
 		count++;
 		ll start ; 
 		for(auto &x: available){ start = x.first;break;}

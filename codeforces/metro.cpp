@@ -4,96 +4,50 @@ typedef long long ll;
 using namespace std;
 
 
-
-
-
-
-void dfs(vector<vector<int>>&adj, vector<bool> &visited, int node){
+void DFS(vector<vector<int>>&adj, vector<bool> &visited, int node,vector<int>&stations){
 	visited[node]=true;
-	for(auto x: adj[node]){
-		if(visited[x]== false){
-			dfs(adj, visited, x);
-		}
-	}	
-
+	for(auto n: adj[node]){
+		if(!visited[n] && stations[n]==1 && stations[node]==1){
+			DFS(adj, visited, n, stations);
+		}	
+	}
 
 }
-
-
-
-
-
-
-
-void solve(){
-
-
-	int n, s;
-	cin>>n>>s;
-	vector<int> metro;
-	for(int i = 0 ; i < 2; i++){
-		for(int j = 0 ; j< n ; j++){
-			int g;
-			cin>>g;
-			metro.push_back(g);
-		}
-	}
-
-
-
-
-	vector<vector<int>> adj(2*n);
-	for(int i = 0 ; i< n-1 ; i++){
-		if(metro[i]==1){
-			if(metro[i+1]==1){
-				adj[i].push_back(i+1);
-			}	
-			if(metro[i+n]==1){
-				adj[i].push_back(i+n);
-			}
-		}
-	}
-
-	for(int i = 2*n-1 ; i>n ; i--){
-		if(metro[i]==1){
-			if(metro[i-1]==1){
-				adj[i].push_back(i-1);
-			}	
-			if(metro[i-n]==1){
-				adj[i].push_back(i-1);
-			}
-		}
-	}
-	if(metro[n-1] == 1 && metro[2*n -1] ==1){
-		adj[n-1].push_back(n-1+n);
-		adj[2*n-1].push_back(n-1);
-	}
-	vector<bool> visited(2*n-1, false);
-	dfs(adj, visited, 0);
-	if(visited[s-1]==false && visited[2*s -1] ==false){
-		cout<<"NO"<<endl;
-		for(auto x: visited)cout<<x<<endl;
-	}else{
-		cout<<"YES"<<endl;
-		for(auto x: visited)cout<<x<<endl;
-	}
-
-		
-
-
-
-	//falta revisar el caso en que i= n
-}
-
-
 
 
 
 int main(){
-	
-	solve();
+	int n, s;cin>>n>>s;
+	vector<int> stations;
+	vector<vector<int>> adj(2*n);
+	vector<bool> visited(2*n, false);
+	for(int i = 0 ; i< 2*n; i++){
+		int g;	cin>>g;	
+		stations.push_back(g);	
+		if(i<=n-1 && i>=1){
+			for(int j = i+1; j< n; j++){
+				adj[i].push_back(j);
+
+			}
+			//adj[i].push_back(i+1);
+			adj[i].push_back(i+n);
+		}
+		if(i>n && i<=2*n -1){
+
+			for(int j = i-1; j>n; j--){
+				adj[i].push_back(j);
+
+			}
+			adj[i].push_back(i-1);
+		}
+	}
+	//for(auto x: stations) cout<<x<<endl;
+	DFS(adj, visited, 0, stations);		
+	if(visited[n+s-1]){
+		cout<<"YES"<<endl;
+	}else cout<<"NO"<<endl;
+	for(auto x: visited)cout<<x<<  ' ';
 	return 0;
-
-
 }
+
 
