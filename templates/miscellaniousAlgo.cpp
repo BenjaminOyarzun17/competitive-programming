@@ -28,27 +28,12 @@ void binarySearch(vector<int>arr, int l, int r, int x){
 
 
 
-void solve(){
-
-
-	ll t;
-	scanf("%lld", &t);
-	while(t--){
-
-	
-	}
-
-
-
-}
-
 
 
 
 
 int main(){
 	 
-	solve();
 	return 0;
 
 
