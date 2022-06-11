@@ -58,7 +58,6 @@ struct SegmentTree{
 		// actualizar la posición t a un valor val
 		update(0, 0, N-1, t, val);
 	}
-
 	void update(int n, int i, int j, int t, int val){
 		// Actualiza en O(log N)
 		// n: indice del nodo en tree

@@ -44,6 +44,7 @@ ll INF = 10e18;
 int main(){
 	int n, m ; cin>>n>>m;
 	//formato {distancia, nodo}
+:q
 	vector<vecotr<pair<ll, ll>>> adj(n);
 	for(int i=0 ;i<n ; i++){
 		ll u,v,w;cin>>u>>v>>w;
