@@ -4,8 +4,7 @@ using namespace std;
 int main(){
 	int n;
 
-	map<int,vector<int>>ma;
-	cin>>n;
+	map<int,vector<int>>ma; cin>>n;
 	vector<int>v(n);
 	for(auto &x: v)cin>>x;
 	int counter = 0;

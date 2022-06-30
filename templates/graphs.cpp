@@ -30,12 +30,12 @@ void dijkstra(){
 	dist[0]=0;	
 	vector<ll> parent(n);
 	while(!pq.empty()){
-		auto [peso_camino,u] = pq.top();
+		auto [cweight,u] = pq.top();
 		pq.pop();
-		if(peso_camino!=dist[u])continue; 
+		if(cweight!=dist[u])continue; 
 		for(auto [v,w] : adj[u]){
-			if(peso_camino+ w< dist[v]){
-				dist[v] = peso_camino+w;
+			if(cweight+ w< dist[v]){
+				dist[v] = cweight+w;
 				pq.push({dist[v], v});
 				parent[v]=u;
 			}

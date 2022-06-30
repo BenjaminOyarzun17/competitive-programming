@@ -35,16 +35,17 @@ ll bintoInt(string bin){
 
 
 
+//conjunto potencia de un conjunto
 vector<vector<int>> subsets(vector<int>& nums) {
         int n=nums.size();
-        vector<vector<int>>res((1<<n));
-        for(int mask = 0; mask < (1<<n); mask++)
+        vector<vector<int>>res((1<<n));//1<<n = 2^n
+        for(int mask = 0; mask < (1<<n); mask++)//hasta 2^n
         {
-            for(int i = 0; i < n; i++)
+            for(int i = 0; i < n; i++)//hasta n
             {
-                if(mask&(1<<i)) // is the i-th bit of this mask 1?
+                if(mask&(1<<i)) //!!!!
                 {//This mask corresponds to a subset containing i-th number of nums array
-                    res[mask].push_back(nums[i]);
+                    res[mask].push_back(nums[i]);//guarda el INDICE de los nodos activados
                 }
             }
         }

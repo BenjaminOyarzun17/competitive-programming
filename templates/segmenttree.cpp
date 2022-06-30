@@ -66,7 +66,18 @@ struct SegmentTree{
 		int mid = (i+j)/2;
 		build(2*n+1, i, mid, A);
 		build(2*n+2, mid+1, j, A);
+		/*
+			los hijos del nodo en el INDICE n estan en los indices 2n+1 y 2n+2
+			por otro lado, los argumentos 2 y 3, [i, j], nos dicen al segmento del arbol que apunta tree[n]
+			recordar que la numeracion del segment tree es: 
+
+       			         0
+			      1	    2
+			    3   4  5  6
+
+		*/
 		tree[n] = tree[2*n+1] + tree[2*n+2];
+		//tree[n] = merge(tree[2*n+1], tree[2*n+2]);
 	}
 
 	int query(int l, int r){
@@ -86,13 +97,20 @@ struct SegmentTree{
 		else if(j < l || r < i){
 			// Caso no está contenido ([i,j] y [l,r] no intersectan)
 			return 0; // 0 es el neutro de nuestra operación (suma)
+			//return NEUTRO;
 		}
 		// Caso contenido parcialmente:
 		int mid = (i+j)/2;
 		return query(2*n+1, i, mid, l, r)
 			+ query(2*n+2, mid+1, j, l, r);
+		//return merge (query(2n+1, i, mid, l ,r ), query(2n+2, i, mid, l , r));
 	}
 
+	/*
+		OJO: 
+			si el problema me dice que tengo que acutalizar solo un valor por query, esto basta
+			de lo contrario, HAY QUE USAR LAZY (range update)
+	*/
 	void update(int t, int val){
 		// actualizar la posición t a un valor val
 		update(0, 0, N-1, t, val);
@@ -105,13 +123,14 @@ struct SegmentTree{
 		// val: valor que le queremos poner
 		if(t < i || j < t) return; // No contenido
 		if(i == j){ // Caso hoja
-			tree[n] = val;
+			tree[n] = val;//update
 			return;
 		}
 		int mid = (i+j)/2;
 		update(2*n+1, i, mid, t, val);
 		update(2*n+2, mid+1, j, t, val);
 		tree[n] = tree[2*n+1]+tree[2*n+2];
+		//merge(...)
 	}
 };
 struct Nodo{
@@ -183,6 +202,9 @@ struct SegmentTreeAdvanced{
 		tree[n] = merge(tree[2*n+1], tree[2*n+2]);
 	}
 };
+
+
+
 struct SegmentTreeLazy{
 	int N;
 	vector <int> tree, lazy;
@@ -261,7 +283,7 @@ struct SegmentTreeLazy{
 
 			// si i != j, no es un nodo hoja
 			if(i != j) {
-				lazy[2*n+1] += lazy[n];
+				lazy[2*n+1] += lazy[n];//se queda en la fila de espera
 				lazy[2*n+2] += lazy[n];
 			}
 
@@ -279,7 +301,7 @@ struct SegmentTreeLazy{
 				lazy[2*n+2] += val;
 			}
 
-			return;
+			return;//!!!!!!!!!!
 		}
 		else if(j < l || r < i){
 			// Caso no está contenido ([i,j] y [l,r] no intersectan)

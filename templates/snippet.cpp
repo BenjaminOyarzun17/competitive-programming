@@ -8,9 +8,6 @@ typedef vector<vll> vvll;
 typedef pair<ll, ll> pll;
 typedef vector<pll> vpll;
 
-
-
-
 ll INF = 1e18;
 ll mod = 1e9+7;
 

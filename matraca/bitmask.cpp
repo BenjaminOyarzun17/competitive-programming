@@ -1,0 +1,70 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define	pb push_back
+typedef long long ll;
+typedef vector<ll> vll;
+typedef vector<bool> vb;
+typedef vector<vll> vvll;
+typedef pair<ll, ll> pll;
+typedef vector<pll> vpll;
+
+ll INF = 1e18;
+ll mod = 1e9+7;
+
+
+
+
+
+
+vvll bitmasks(vll &a){
+	ll n  = a.size();
+	vvll pset((1<<n));
+	for(ll mask = 0 ; mask < (1<<n); mask++){
+		for(ll i = 0 ; i< n; i++){
+			if(mask&(1<<i))pset[mask].pb(i);
+		}
+	}
+	return pset;
+}
+
+vvll btmsks(vll  &a){
+	ll n = a.size();
+	vvll subsets((1<<n));
+	for(ll mask = 0 ; mask<(1<<n); mask++){
+		for(int i = 0; i< n; i++){
+			if(mask&(1<<i))subsets[mask].pb(i);
+		}
+	}
+	return subsets;
+}
+
+
+
+
+vvll btm(vll & a){
+	ll n = a.size();
+	vvll pset((1<<n));
+	for(ll mask= 0 ; mask < (1<<n)	; mask++){
+		for(ll i = 0 ; i< n ; i++){
+			if(mask&(1<<i))pset[mask].pb(i);
+		}
+	}
+	return  pset;
+}
+
+
+
+
+int main(){
+	ios_base::sync_with_stdio(0); cin.tie(0);
+
+
+
+
+
+
+
+	return 0;
+}
+
+

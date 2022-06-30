@@ -36,7 +36,6 @@ void solve(){
 		}else{
 			clist.pop();
 		}
-
 	}	 	
 
 	cout<<count<<'\n';
