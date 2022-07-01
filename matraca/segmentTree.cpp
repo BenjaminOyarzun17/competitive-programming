@@ -11,6 +11,66 @@ typedef vector<pll> vpll;
 
 
 
+struct st{
+	vll tree;
+	ll N;
+	st(vll &a){
+		N = a.size();
+		tree.resize(4*N);
+		build(0, 0 , N-1, a);	
+	}
+	void build(ll n, ll i, ll j , vll &a){
+		if(i==j){
+			tree[n]=  a[i];
+		}
+		ll mid = (i+j)/2;
+		build(2*n+1, i, mid, a);
+		build(2*n+2, mid +1, j, a);
+		tree[n] = merge(..);
+	}
+	ll query(ll l , ll r){
+		return query(0, 0 , N-1, l , r);
+	}
+	ll query(ll n, ll i , ll j, ll l , ll r ){
+		if(l<=i && j<=r){
+			return tree[n];
+		}else if(i>r || j<l){
+			return neutr;	
+		}ll mid = (i+j)	/2;
+		return merge(query... , query...);
+	}
+	void update(ll t, ll val){
+		return update(0, 0 , N-1, t, val);
+	}
+	void update(ll n, ll i , ll j, ll t, ll val){
+		if(t>j|| t< i){
+			return ;
+		}else if(i==j){
+			tree[n]= val;//update
+			return ;
+		}
+		ll mid = (i+j)/2;
+		update(2*n+1, i, mid, t, val);
+		update(2*n+2, mid+1, j, t, val);
+		tree[n] = merge(...);
+	}
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 struct st{

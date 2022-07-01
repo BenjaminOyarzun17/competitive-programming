@@ -12,6 +12,27 @@ ll INF = 1e18;
 ll mod = 1e9+7;
 
 
+struct dsu{
+	vll e;
+	dsu(vll &a){
+		e= a;
+	}
+	ll find(ll x){
+		return e[x]<0? x: find(get[x]);
+	}
+	bool join(ll x, ll y){
+		x = find(x);
+		y = find(y);
+		if(x==y) return false;
+		if(x>y) swap(x, y);
+		e[x] += e[y]; e[y] = x;
+		return true;
+	}
+};
+
+
+
+
 
 
 

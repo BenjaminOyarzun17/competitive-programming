@@ -12,9 +12,37 @@ ll INF = 1e18;
 ll mod = 1e9+7;
 
 vll x[maxint], bit[maxint];
+
+
+void update(ll i, ll val, ll n){
+	for(; i< n ; i+= i&(-1))bit[i]+= val;
+}
+
+void qury(ll i){
+	ll sum = 0 ;
+	for(; i>0; ; i-= i&(-i)){
+		sum+=bit[i];
+	}
+	return sum;
+}
+
+
+void update(ll i, ll val, ll n){
+	for(; i<= n; i+=i&(-i)){
+		bit[n]+= val;
+	}
+}
+void qry(ll i){
+	ll sol = 0;
+	for(; i>0 ; i-=i&(-i)	){
+		sol+= bit[i];
+	}
+	return sol;
+}		
+
 //ojo que estoy indexando desde 1!!
 vll update(ll i, ll val, ll n){
-	for(; i<=n; i+= i&(-i))x[i]+= val;//hasta n pq tiene n nodos
+	for(; i<=n; i+= i&(-i))bit[i]+= val;//hasta n pq tiene n nodos
 }
 vll query(ll i){
 	ll sum = 0 ;

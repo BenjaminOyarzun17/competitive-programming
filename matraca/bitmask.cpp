@@ -13,6 +13,22 @@ ll mod = 1e9+7;
 
 
 
+vvll bitwise(vll &a){
+	ll n = a.size();
+	vvll powerset((1<<n));
+	for(ll mask = 0 ; mask<<n; mask++){
+		for(int i = 0 ; i< n ; i++){
+			if(mask&(1<<i)){
+				powerset[mask].pb(i);
+			}
+		}
+	}
+	return powerset;
+}
+
+
+
+
 
 
 
