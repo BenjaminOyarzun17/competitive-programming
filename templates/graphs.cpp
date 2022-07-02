@@ -12,6 +12,52 @@ ll mod = 1e9+7;
 
 
 
+
+//algoritmo de prim para encontrar mst. ojo que usa priority queue.
+vvpll  adj[n]; //de forma: nodo, ( nodo , peso)
+vector<bool> visited(n,false);  
+vpll mst;
+// to track the final connections that the MST has
+vector<ll> value(n,INF); 
+priority_queue<pll, vpll, greater<pll>>> que; 
+void prims() {
+    que.push({0,0});  //push the weight required to insert the source node =0 and the node itself(i.e 1)
+	//la pq. tiene formato weight, nodo por conveniencia
+    value[0]=0;    //minimum weight for source is 0  
+    visited[0] = true;         
+    while (!que.empty()) {      
+        int u= que.top().second; que.pop();                    
+        for (auto [v, w] : adj[u]) {   
+            if (!visited[v] && value[v] > w) {   //if the node is not visited and if its weight along this edge is less than the 
+                value[v] = w;                         //previous edge associated with it, then we consider it
+        	visited[v] = true;         
+		mst.pb({u, v});
+                que.push({value[v], v});   //FORMATO peso, nodo!!
+            }
+        }
+    }
+}
+
+
+
+
+//algoritmo de kruskal para encontrar minimum spanning tree de un grafo. OJO: usa DSU
+template<class T> T kruskal(int N, vector<pair<T,pi>> ed) {
+	sort(ed.begin(), ed.end());
+	vll init(N, -1);
+	vector<pair<ll,pll>> edge;
+	/*
+		par de forma: peso, <nodo, nodo>. asi se tiene el vector de edges
+	*/
+	T ans = 0; DSU D; D(N); // edges that unite are in MST
+	for (auto a: ed) if (D.join(a.second.first,a.second.second)) ans += a.first;
+	return ans;
+
+}
+
+
+
+
 //topological sort usando dfs. solo funciona paragrafos sin ciclos 
 int N; // Number of nodes
 vector<int> graph[100000], top_sort; // Assume that this graph is a DAG
