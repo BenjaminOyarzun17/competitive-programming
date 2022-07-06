@@ -11,6 +11,55 @@ typedef vector<pll> vpll;
 ll INF = 1e18;
 ll mod = 1e9+7;
 
+
+vll bit(n+1);
+vll x;//size n
+
+
+void update(ll i, ll val){
+	for(; i<= n ;i+=i&(-i)){
+		bit(i)+= val;
+	}
+
+}
+
+ll query(ll i){
+	ll ans = 0 ;
+	for(; i>0 ; i-= i&(-i)){
+		ans+= bit(i);
+	}
+	return ans;
+}
+
+
+
+
+vll bit(n);
+vll x(n);
+
+void update(ll i, ll val){
+	for(; i	<=n; i+= i&(-i)){
+		bit[i]+= val;
+	}
+}
+
+void query(ll i, ll val){
+	ll sum = 0 ;
+	for(; i> 0;i-=i&(-i) ){
+		sum+= bit[i];
+	}
+	return sum;
+}
+
+
+
+
+
+
+
+
+
+
 vll x[maxint], bit[maxint];
 
 

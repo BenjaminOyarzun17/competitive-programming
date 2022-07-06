@@ -12,6 +12,42 @@ ll INF = 1e18;
 ll mod = 1e9+7;
 
 
+
+struct DSU{
+	vll e;
+	DSU(vll &a ){
+		e=a;
+	}
+	ll get(ll x){
+		return e[x]<0? x: get(e[x]);
+	}
+	bool join(ll x, ll y){
+		x = get(x);
+		y = get(y);
+		if(x==y)return false;
+		if(x>y)swap(x,y);
+		e[x]+= e[y]; e[y] =x;	
+		return true;
+	}
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 struct dsu{
 	vll e;
 	dsu(vll &a){

@@ -14,7 +14,7 @@ struct st{
 	st(vll &a){
 		N = a.size();	
 		tree.resize(4*N);
-		build(0, 0 , N-1, a);
+		buil(0, 0 , N-1, a);
 	}
 	void build(ll n, ll i , ll j, vll &a){
 		if(i == j){
@@ -35,22 +35,6 @@ struct st{
 		}else if(i> r && j< l ){
 			return NEUTRO;
 		}
-		ll mid = (i+j)/2;
-		return merge(..., ...);
-	}
-	void update(ll t, ll val){
-		update(0 , 0 , N-1, t, val);
-	}
-	
-	void update(ll n, ll i , ll j ,ll t, ll val ){
-		if(t< i || t> j){
-			return ;
-		}else if(i == j)upnode(tree[t], val);
-		ll mid = (i+j)/2;
-		update(2*n+1, 0, N-1, t, val);
-		update(2*n+2, 0, N-1, t, val);
-		tree[n] = merge(..., ...);
-		return ;
 	}
 };
 

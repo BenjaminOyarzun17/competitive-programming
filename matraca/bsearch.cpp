@@ -14,6 +14,34 @@ typedef vector<pll> vpll;
 ll INF = 1e18;
 ll mod = 1e9+7;
 
+
+
+ll bs(ll x, ll l, ll r, vll &a){
+	if(l<=r){
+		ll mid = (l+r)/2;
+		if(a[mid]==x)return mid;
+		else if(a[mid]>x)return bs(x, l , mid-1, a);
+		return bs(x, mid+1, r, a);
+	}
+	return -1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ll bs(ll x, ll i , ll j, vll &a){
 	if(i<=j){
 		ll mid = (i+j)/2;

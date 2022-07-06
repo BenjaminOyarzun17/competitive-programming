@@ -15,6 +15,69 @@ ll INF = 1e18;
 ll mod = 1e9+7;
 
 
+
+
+struct cg{
+	bool operator()(pll a, pll b){
+		return a.second< b.second;
+	}
+};
+
+void dijkstra(ll n, vll &adj, pll s){
+	vll d(n, INF)	;	
+	priority_queue<pll, vpll, cg<pll>>pq;
+	pq.push(s);
+	d[s.second] = 0;	
+	while(!pq.empty()){
+		auto [u, cw ] = pq.top(); pq.pop();
+		if(d[u]!=cw)continue;
+		for(auto [v, w]: adj[v]){
+			if(w+ cw< d[v]){
+				d[v] = w+ cw;
+				pq.push({v, d[v]});
+			
+			}
+		}
+	}
+
+}
+
+
+
+struct cg{
+	bool operator()(pll a, pll b){
+		return a.second< b.second;
+	}
+
+};
+void dijkstra(vvll &adj, ll start, ll n){
+	vector<ll> d(n, INF);
+	priority_queue<pll, vpll, cg<pll>>pq;
+	pq.push({start, 0});
+	d[start.first]  = 0;	
+	while(!pq.empty()){
+		auto [c, w] = pq.top(); pq.pop();
+		if(w!=d[c])continue;
+	
+		for(auto [v, w]: adj[c]){
+			if(d[c]+w< d[v]){
+				d[v] = d[c] +w;
+				pq.push({v,d[v] });
+			}
+			
+		}
+	}
+
+
+}
+
+
+
+
+
+
+
+
 struct cg{
 	bool operator()(pll a, pll b){
 		return a.second< b.second;
