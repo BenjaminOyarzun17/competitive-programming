@@ -37,34 +37,51 @@ podemos iterar desde n =1 . si nos se cumple que hay un dp[n+1][i][j]==1, entonc
 
 */
 
-
+bool check(ll i , ll j, ll n){
+	if(i+1<n && i+1>=0 && i<n && i>=0 && j-1<n && j-1>=0 && j<n && j>=0)return true;
+	return false;
+}
 
 
 int main(){
 	ios_base::sync_with_stdio(0); cin.tie(0);
 	ll n; cin>>n;
-	vvll g(n, vll (n, 0));
-	vector<vector<bool>>v(n, vector<bool>(n,false)) ;
+
+	vector<vector<vector<ll>>> dp(n+1, vll(n+1, vll (n+1, 0)));
 	ll sol = 0;
-	vpll moves ={{1,0}, {0,1},{-1,0}, {0,-1}};
+	bool o= false;
 	for(int i = 0 ; i<n; i++){
 		ll a, b;cin>>a>>b;
 		for(int j = a; j<=b; j++){
-			g[i][j]=1;
+			dp[1][i][j]=1;
+			o = true;
 		}
 	}
+	if(!o){
+		cout<<0<<endl;
+	}else{
+		sol =1;
 
-	for(auto x: g){
-		for(auto y: x) cout<<y<< ' ' ;
-		cout<<endl;
-	}
+		bool broken = false;
 
-	for(int i = 0 ;i< n; i++){
-		for(int j = 0 ;j< n; j++){
-			if(!v[i][j]){
-				sol = max(bfs(v, g, moves, i, j, n), sol);
+		while(!broken){
+		bool next= false;
+		for(int i = 0 ; i< n; i++){
+			for(int j = 0 ;j< n;j++){
+				if(check(i, j, n) && dp[sol][i][j]){
+					if(dp[sol][i+1][j] && dp[sol][i][j-1] &&dp[sol][i+1][j-1] ) 
+						dp[sol+1][i][j]=1;
+						next= true;
+				}
 			}
 		}
+		if(!next){
+			broken = false;
+		}else sol++;
+		}
+		cout<<sol<<endl;
+
+
 	}
 	cout<<sol<<endl;
 
