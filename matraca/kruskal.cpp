@@ -15,6 +15,80 @@ ll mod = 1e9+7;
 
 
 
+
+struct DSU{
+	vll e;
+	void init(ll n){
+		for(int i = 0; i<n; i++)e.pb(-1);
+	}
+	ll get(ll x){
+		return e[x]<0? x: e[x]= get(e[x]);
+	}
+	bool join(ll x, ll y){
+		x= get(x);
+		y= get(y);
+		if(x==y)return false;
+		if(x>y)swap(x, y);
+		e[x]+=e[y];e[y] = x;
+		return true;
+	}
+
+};
+
+vpll kruskal(vector<pair<ll, pll>>& edges , ll n){
+	sort(edges.begin(), edges.end());
+
+	DSU d; d.init(n);
+	vpll mst;
+	for(auto x: edges) if(d.join(x.second.first, x.second.second))mst.pb({x.second});
+	return mst;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+struct DSU{
+	vll e;
+	DSU(ll n){
+		for(int i = 0 ; i< n; i++)e.pb(-1);
+	}
+	ll get(ll x){
+		return e[x]<0 ? x: e[x] = get(e[x]);
+	}
+	bool join(ll x, ll y){
+		x = get(x);
+		y = get(y);
+		if(x==y)return false;
+		if(x>y)swap(x,y);
+		e[x]+= e[y]; e[y] = x;
+		return true;
+	}
+}
+
+vpll kruskal(ll nodes){
+	vector<pair<ll , pll>> edges;
+	vector<pll> sol;
+	sort(edges.begin(), edges.end());
+	DSU d(nodes);
+	for(auto x: edges){
+		if(d.join(x.second.first, x.second.second){
+			sol.pb(x.second.first, s.second.second);
+		}
+	}
+	return sol;
+}
+
+
 vvpll kruskal(){
 	vvpll mst;
 	vector<pair<ll, pll>>;//w, (u, v)

@@ -12,6 +12,58 @@ ll INF = 1e18;
 ll mod = 1e9+7;
 
 
+
+
+vll bit;
+vll x;
+
+
+
+void update(ll i, ll val){
+	for(; i<=n; i+= i&(-i))bit[i]+= val;
+}
+
+ll query(ll i){
+	ll sum = 0;
+	for(; i>0; i-=i&(-i))sum+=bit[i];
+	return sum;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+vll bit;
+vll x;
+
+void update(ll i, ll x){
+	for(; i<=n; i+= i&(-i))bit[i]+= x;
+}
+
+ll query(ll x){
+	ll sum = 0 ;
+	for(int i = n ; i>0; i-=i&(-i))sum+=bit[i];
+	return sum;
+
+
+}
+
+
+
+
+
+
 vll bit(n+1);
 vll x;//size n
 

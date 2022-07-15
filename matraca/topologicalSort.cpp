@@ -14,6 +14,76 @@ ll mod = 1e9+7;
 
 
 
+
+
+void tps(ll u, vvll &adj, vector<bool> v, vll & topo){
+	v[u] =true;
+	for(auto x: adj[u]){
+		if(!v[x]){
+			tps(x, adj, v, topo);
+		}
+	}
+	topo.pb(u);
+}
+
+
+
+
+
+
+
+
+vll command(vvll &adj, ll n){
+	vector<bool> v(n,false);	
+	vll topo;
+	for(int i = 0 ;i< n; i++){
+		if(!v[i]){
+			tps(i, adj, v, topo);
+		}
+	}
+	reverse(topo.begin(), topo.end());
+	return topo;
+}
+
+
+
+
+
+
+void tps(vector<bool> v, vvll & adj, vll &topo, ll u){
+	v[u]=true;	
+	for(auto x: adj[u]){
+		if(!v[u]){
+			tps(v, adj, topo, x);
+		}
+	}
+	topo.pb(x);
+}
+
+
+
+
+vll  exe(){
+	vvll adj;
+	vector<bool> v;
+	vll topo;
+	for(int i = 0;  i< n ; i++) {
+		if(!v[i]){
+			tps(i, adj,  topo, x);
+		}
+	}
+	reverse(topo.begin(), topo.end());
+	return topo;
+}
+
+
+
+
+
+
+
+
+
 void tps(ll n, vvll &adj, vector<bool> &v, vll tp){
 	v[n] =true;
 	for(auto x: adj[n]){

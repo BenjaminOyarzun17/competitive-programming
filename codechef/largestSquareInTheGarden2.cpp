@@ -43,66 +43,86 @@ en vez de iterar para todo i, j, puedo iterar por sobre todo par que tiene un ve
 
 
 */
-
-bool check(ll i , ll j, ll n){
-	if(i+1<n && i+1>=0 && i<n && i>=0 && j+ 1<n && j+1>=0 && j<n && j>=0)return true;
+bool check(ll x, ll y, ll n){
+	if(x<n && y<n)return true;
 	return false;
-}
 
+}
 
 int main(){
 	ios_base::sync_with_stdio(0); cin.tie(0);
 	ll n; cin>>n;
-	vector<vector<vector<ll>>> dp(n+1, vector<vll> (n, vector<ll>(n, 0)));
+	vvll g(n, vll (n, 0));
 	ll sol = 0;
 	bool o= false;
+	vpll ac ;
 	for(int i = 0 ; i<n; i++){
 		ll a, b;cin>>a>>b;
 		for(int j = a; j<=b; j++){
-			dp[1][i][j]=1;
+			g[i][j]=1;
+			ac.pb({i, j});
 			o = true;
 		}
 	}
-
 	if(!o){
 		cout<<0<<endl;
 	}else{
-		sol =1;
+		vpll moves={{1, 0},{1, 1},{0, 1}};
+		for(auto p: ac){
+			map<ll, ll>cn; 	
+			vvll d(n, vll (n, -1));
+			d[p.first][p.second]= 1;
+			cn[1]= 1;	
+			queue<pair<ll, pll>> q;// level, {i,j}
+			q.push({1, p});
+			ll level = 1;
+			while(!q.empty()){
+				pair<ll, pll>pi =  q.front(); q.pop();
+				ll x=pi.second.first; 
+				ll y=pi.second.second; 
+				for(auto [dx, dy]: moves){
+					ll nx = x+dx;
+					ll ny = y+dy;
+					if(check(nx, ny, n)){
+						if(g[nx][ny] && d[nx][ny]==-1){
 
-		bool broken = false;
-
-		while(!broken && sol<=n){
-			bool next= false;
-			for(int i = 0 ; i< n-sol; i++){
-				for(int j = 0 ;j< n-sol;j++){
-					if(check(i, j, n) && dp[sol][i][j]){
-						if(dp[sol][i+1][j] && dp[sol][i][j+1] &&dp[sol][i+1][j+1] ){
-							dp[sol+1][i][j]=1;
-							next= true;
+							q.push({pi.first+1, {nx, ny}});
+							d[nx][ny] = d[x][y]+1;
+							if(cn[pi.first+1]==0){
+								cn[pi.first+1]+= (ll)pow(pi.first, 2)+ 1;
+							}else cn[pi.first+1] ++;
+							level = pi.first+1;
+						}else if(g[nx][ny]==0){
+							queue<pair<ll, pll>> e;	
+							swap(q, e);
 						}
 					}
 				}
-		
+			
 			}
-			if(!next){
-				broken = true;
-			}else sol++;
-			/*
-			cout<<sol<<endl;
-			for(auto x: dp[sol]){
-				for(auto y: x )cout<<y<< ' ';	
-				cout<<endl;
+			if(cn[level]==(ll)pow(level, 2)){
+				sol = max(level, sol);
+			}else{
+				for(ll i=1 ; i< level; i++){
+					if(cn[i]<pow(i, 2)){
+						sol = max(i-1, sol);
+						break;
+					}
+				}
 			}
-			*/
+			if(sol == n)break;
+			
 		}
-		
-	
 		cout<<sol<<endl;
+
+
+
 	}
 
 
 
 	return 0;
 }
+
 
 

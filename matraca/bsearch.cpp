@@ -16,6 +16,51 @@ ll mod = 1e9+7;
 
 
 
+
+
+
+
+ll bs(vll &a , ll i, ll j, ll x){
+	if(i<=j){
+		ll mid = (i+j)/2;
+		if(a[mid] == x)return mid;
+		if(a[mid]>x)return bs(a, i , mid-1, x);
+		return bs(a, mid+1, j, x);
+
+	}
+
+	return -1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ll bs(ll x, ll i , ll j, vll &a){
+	if(i<=j){
+		ll mid = (i+j)/2;
+		if(a[mid]==x)return mid;
+		if(a[mid]>x)return bs(x, i, mid-1, a);
+		return bs(x, mid+1,j, a);
+	}
+	return -1;
+}
+
+
+
+
+
+
+
 ll bs(ll x, ll l, ll r, vll &a){
 	if(l<=r){
 		ll mid = (l+r)/2;

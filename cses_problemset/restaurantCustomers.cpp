@@ -35,7 +35,6 @@ int main(){
 
 	ll sol = -1;
 	for(auto x: times){
-
 		count= count+tin[x]-tout[x];
 		sol =max(sol, count);
 	}

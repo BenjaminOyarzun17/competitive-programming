@@ -15,6 +15,57 @@ ll INF = 1e18;
 ll mod = 1e9+7;
 
 
+void dijkstra(vvll& adj, pll s, ll n){
+	priority_queue<pll, vpll, greater<pll>pq;
+	vll d(n, INF);	
+	pq.push({s.second, s.first});
+	d[s.first]= 0;
+	while(!pq.empty()){
+		auto [w, x]= pq.top(); pq.pop();
+		if(w!= d[x])continue;
+		for(auto [nw, v]: adj[x]){
+			if(nw+w<d[v]){
+				d[v] = nw+w;
+				pq.push({d[v], v});	
+			}
+		}
+	}
+
+}
+
+
+
+void dijkstra(vvll &adj, pll s, ll n){
+	priority_queue<pll, vpll, greater<pll>>pq;
+	vll dist(n, INF);
+	dist[s.first]=0;
+	pq.push({s.second, s.first});
+	while(!pq.empty()){
+		auto [w, c]= pq.top();pq.pop();
+		if(dist[c]!=w)continue;
+		for(auto [v, ww]: adj[c]){
+			if(dist[v]>w+ww){
+				dist[v] = w+ww;
+				pq.push({dist[v], v});
+			}
+		}
+
+
+
+	}
+		
+
+
+
+}
+
+
+
+
+
+
+
+
 
 
 struct cg{

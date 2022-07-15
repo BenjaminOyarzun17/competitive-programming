@@ -13,6 +13,185 @@ typedef vector<pll> vpll;
 
 ll INF = 1e18;
 ll mod = 1e9+7;
+
+
+struct st{
+	vll tree, lazy;
+	ll N;
+	st(vll &a){
+		tree.resize(4*N);
+		lazy.resize(4*N);
+		build(0, 0, N-1, a);
+	}
+	void build(ll N, ll i, ll r, vll &a){
+		if(i==j){
+			tree[n]= a[i];
+			return ;
+		}
+		ll mid =(i+j)/2;
+		build(2*n+1, i, mid, a);
+		build(2*n+2, mid+1, j, a);
+		tree[n] = merge(..., ..)
+	}
+	ll query(ll l , ll r){
+		return query(0, 0 , N-1, l , r);
+	}
+	ll query(ll N, ll i, ll j, ll l , ll r){
+		if(lazy[n]!=0){
+			updateNode(n, lazy[n]);
+			if(i!=j){
+				lazy[2*n+1]+= lazy[n];
+				lazy[2*n+2]+= lazy[n];
+			}
+			lazy[n] = NEUTRO;
+		}
+		if(l<=i && j<= r){
+			return tree[n];
+		}else if(i>r || j< l)return neutro;
+		ll mid = (i+j)/2;
+		return merge(..., ....);
+	}
+	void update(ll l , ll r, ll val){
+		update(0, 0 , N-1,  l , r, val);
+	}
+
+	void update(ll N, ll i ,ll j, ll l , ll r, ll val){
+
+		if(lazy[n]!=0){
+			updateNode(n, lazy[n]);
+			if(i!=j){
+				lazy[2*n+1]+= lazy[n];
+				lazy[2*n+2]+= lazy[n];
+			}
+			lazy[n] = NEUTRO;
+		}
+		if(l<=i && j<=r){
+			
+			tree[n] = val;
+			if(i!=j){
+				lazy[2*n+1] +=val;
+				lazy[2*n+2] +=val;
+			}
+			return ;
+		}else if(i>l || j>r)return ;
+		ll mid = (i+j)/2;
+		update(2*n+1,i , mid, l ,r, val);
+		update(2*n+2,mid+1 , j, l ,r, val);
+		tree[n] = merge(..., ...);
+	}
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+struct st{
+	vll tree;ll N;
+	vll lazy;
+	st(vll &a){
+		N= a.size();
+		tree.resize(4*N);
+		lazy.resize(4*N);
+		build(0, 0 , N-1, a);
+	}
+	void build(ll n, ll i, ll j, vll &a){
+		if(i==j){
+			tree[n] = a[i];
+			return ;
+		}
+		ll mid = (i+j)/2;
+		build(2*n+1, i, mid, a);
+		build(2*n+2, mid+1, j, a);
+		tree[n] = merge(..., ...);
+	}
+
+	ll query(ll l , ll r){
+		return query(0 , 0 , N-1, l , r)	;
+	}
+	ll query(ll n, ll i, ll j , ll l , ll r){
+		if(lazy[n] !=0){
+			updateNode(tree[n], lazy[n]);
+			if(i!=j){
+				updateLazy(2*n+1, lazy[n]);
+				updateLazy(2*n+2,  lazy[n]);
+			}
+			lazy[n]  = 0;	
+		}
+
+		if(l<=i && j<=r){
+			return tree[n];	
+		}else if(i> r || j< l){
+			return NEUTRO;
+		}
+		ll mid = (i+j)	/2;
+		return merge(query(2*n+1, i, mid, l , r), query(...));
+	}
+	void update(ll l , ll r, ll val){
+		update(0, 0, N-1, l ,r, val);
+	}
+	void update(ll n, ll i, ll j, ll l, ll r, ll val){
+
+		if(lazy[n] !=0){
+			updateNode(tree[n], lazy[n]);
+			if(i!=j){
+				updateLazy(2*n+1, lazy[n]);
+				updateLazy(2*n+2,  lazy[n]);
+			}
+			lazy[n]  = 0;	
+		}
+		if(i> r || j<l){
+			return ;
+		}else if(l<= i && j<=r){
+			tree[n] = val;
+			if(i!=j){
+				lazy[2*n+1] += val;
+				lazy[2*n+2] += val;
+			}
+			return ;
+		}
+		ll mid = (i+j)/2;
+		update(2*n+1, i, mid, l , r, val);
+		update(2*n+2, mid+1, j, l , r, val);
+		tree[n] = merge(...);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 struct stlazy{
 	vll tree;
 	vll lazy;
