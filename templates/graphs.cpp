@@ -13,6 +13,43 @@ ll mod = 1e9+7;
 
 
 
+//floyd warshall
+//retorna una matriz que tiene la distancia mas corta de un nodo a otro. 
+//la verdad es que basta con almenar el grafo dentro de la misma matriz
+//complejidad muy mala, O(n^3)
+vvll d(n, vll (n, INF));
+for (int i = 1; i <= n; i++) {
+	for (int j = 1; j <= n; j++) {
+		if (i == j) d[i][j] = 0;
+		else if (adj[i][j]) d[i][j] = adj[i][j];// usa matriz de adyacencia
+		// tambien se puede adaptar para lista de adyacencia
+	}
+}
+for (int k = 1; k <= n; k++) {
+	for (int i = 1; i <= n; i++) {
+		for (int j = 1; j <= n; j++) {
+			d[i][j] = min(d[i][j],d[i][k]+d[k][j]);//!!!
+			// como que une los paths i ->k y k->j generando  i-> k-> j
+		}
+	}
+}
+
+
+
+
+//Bellman ford
+//grafo almacenado como edge list. 
+//edges es una lista que tiene tie de forma (a, b, weight)
+vll distance(n, INF);
+distance[x] = 0;//distancia a root.
+for (int i = 1; i <= n-1; i++) {//se puede mostrar que hay que hace max n-1 iteraciones
+	for (auto e : edges) {
+		int a, b, w;
+		tie(a, b, w) = e;
+		distance[b] = min(distance[b], distance[a]+w);
+	}
+}
+
 //algoritmo de prim para encontrar mst. ojo que usa priority queue.
 vvpll  adj(n); //de forma: nodo, ( nodo , peso)
 vector<bool> visited(n,false);  

@@ -14,6 +14,32 @@ typedef vector<pll> vpll;
 ll INF = 1e18;
 ll mod = 1e9+7;
 
+void dijkstra(){
+	vpll adj;//formato u, v,  w
+	priority_queue<pll, vpll> pq;
+	vll d(n, INF);
+	d[0]  = 0;
+	pq.push(0, 0) ;
+	while(!pq.empty()){
+		auto [w, u]= pq.top(); pq.pop();
+		if(d[u]!=w)continue;
+		for(auto [v,dw]: adj[u]){
+			if(d[v]> d[u] + dw){
+				d[v] = d[u] + dw;
+				pq.push({d[v], v});
+			}
+		}
+	}
+
+
+}
+
+
+
+
+
+
+
 
 void dijkstra(vvll& adj, pll s, ll n){
 	priority_queue<pll, vpll, greater<pll>pq;

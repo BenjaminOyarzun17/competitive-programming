@@ -12,6 +12,42 @@ ll INF = 1e18;
 ll mod = 1e9+7;
 
 
+struct DSU{
+	vll e;
+	DSU(ll n){
+		for(int i = 0 ; i< n; i++)e.pb(-1);
+	}
+	ll get(ll x){
+		return e[x]<0? x: e[x] = get(e[x]);
+	}
+	bool join(ll x, ll y){
+		x =  get(x);
+		y =  get(y);
+		if(x==y)return false;
+		if(x>y)swap(x,y);
+		e[x] +=e[y]; e[y] = x;
+		return true;
+	}
+
+}
+
+vpll kruskals(vector<pair<ll, pll>> edges){
+	vpll mst;
+
+	sort(edges.begin(), edges.end());
+	DSU d(edges.size());
+	for(auto e: edges)
+		if(d.join(e.second.first, e.second.second))mst.pb(e.second);
+	return mst;
+
+}
+
+
+
+
+
+
+
 
 
 

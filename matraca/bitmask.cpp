@@ -13,6 +13,20 @@ ll mod = 1e9+7;
 
 
 
+vvll bitmask(vll &a, ll n){
+	vvll ps((1<<n));
+	for(ll mask = 0 ;mask<(1<<n) ; mask++){
+		for(int i= 0 ;i< n ; i++){
+			if(mask & (1<<i))ps[mask].pb(i);
+		}		
+	}
+	return ps;
+}
+
+
+
+
+
 
 
 vvll btmsk(vll &a, ll n){
@@ -27,7 +41,18 @@ vvll btmsk(vll &a, ll n){
 
 
 
+vvll btms(vll &a){
+	vvll ps((1<<n));
 
+	for(ll mask = 0 ; mask <= (1<<n); mask++){
+		for(int i= 0 ; i< n; i++){
+			if(mask&((1<<i)))ps[mask].pb(i);
+		}
+	}
+	return ps;
+
+
+}
 
 
 
