@@ -198,6 +198,43 @@ void dijkstra(){
 	}
 }
 
+
+
+void BFS(ll first, ll n){
+	vvll adj(n);
+	queue<ll> q; 
+	vector<bool> v(n);
+	ll first = 0;
+	q.push(first);
+	while(!q.empty()){
+		ll c = q.first();q.pop();
+		for(auto x: adj[c]){
+			if(!v[x]){
+				q.push(x);
+				v[x] = true;
+			}
+		}
+	}
+
+
+
+}
+
+void DFS(vvll & adj, ll c, vector<bool> v ){
+	for(auto x: adj[c]){
+		if(!v[x]){
+			DFS(adj, x, v);
+			v[x] = true;
+		}
+	}
+}
+
+
+
+
+
+
+
 int main(){
 	ios_base::sync_with_stdio(0); cin.tie(0);
 	return 0;
